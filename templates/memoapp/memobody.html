@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Memo</title>
+</head>
+<body>
+
+{% if memo.instance.id %}
+    <form method="POST">
+    {% csrf_token %}
+{{ memo.title }}
+        <br>
+{{ memo.content }}
+    <button type="submit">Save</button>
+    </form>
+    
+{% else %}
+      <h1>New Memo</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- 폼 시작, action은 데이터를 전송할 url, method는 데이터 전송방법 -->
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <!-- type="text"는 단일 행의 텍스트 입력을 받음-->
+            <input type="text" id="title" name="title" required>
+            <!-- id="title" - label과 연결을 위해 필요함 / name="title" - 서버 전송시 어떤 tilte이라는 파라미터로 값이 전달 -->
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" rows="10" required></textarea>
+            <!-- rows : 텍스트 영역의 높이를 설정, 몇줄의 텍스트를 포함할 수 있느냐의 차이-->
+        </div>
+        <button type="submit">Save</button>
+        <a href="/memo" style="text-decoration: none;"> 
+            <!-- 하이퍼링크 생성하는 앵커 태그 : 누르면 memo url로 감 -->
+            <button type="button">Cancel</button>
+        </a>
+    </form>
+{% endif %}
+</body>
+</html>
+
+{#<h1>{% if form.instance.id %}Edit Memo{% else %}New Memo{% endif %}</h1>#}
+{#<form method="post">#}
+{#{% csrf_token %}#}
+{#{{ form.as_p }} <!-- 폼 자동 세팅 / css 적용 안되는 단점-->#}
+{#<button type="submit">Save</button>#}
+{#</form>#}

@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from memoapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', views.memo, name='memo'),
+    path('memo/new/', views.memo_create, name='memo_create'),
+    path('memo/update/<int:memo_id>/', views.memo_update, name='memo_update'),
+    path('memo/<int:memo_id>/', views.memo_detail, name='memo_detail'),
+    path('memo/delete/<int:memo_id>/', views.memo_delete, name='memo_delete'),
+
 ]

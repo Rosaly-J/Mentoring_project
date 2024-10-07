@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memo List</title>
+</head>
+<body>
+    <h1>Memo List</h1>
+    <a href="/memo/new">Create a new memo</a>
+
+    <ul class="memo-list">
+            {% for memo in memos %}
+        <li class="memo-item"> <!-- 여기서 시작-->
+            <a href="{%  url 'edit_memo' memo.id  %}">
+                <span>{{ memo.title }}</span> <!-- 동적 제목 삽입 -->
+            </a>>
+            <div>
+                <a href="{%  url 'edit_memo' memo.id  %}">
+                    <button>Edit</button>
+                </a>
+                <a href="{%  url 'delete_memo' memo.id  %}"> <!-- 1번으로 나오는 거 동적 구현하기 / 힌트 : url도 %로 구현 가능 --> <!-- 제목 눌러도 edit으로 들어가게 구현 -->
+                    <button>Delete</button>
+                </a>
+            </div>
+        </li> <!-- 여기서 끝-->
+        {% endfor %} <!-- 위치 변경 완료 / 사유 : for 문 내용이 다 끝나고 나서 endfor을 적어야 함-->
+    </ul>
+
+</body>
+</html>
